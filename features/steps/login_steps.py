@@ -3,7 +3,7 @@ from features.pages.login_page import LoginPage
 
 @given("user is on the login page")
 def LaunchBrowser(context):
-    context.driver.get("http://localhost:8180/pc/PolicyCenter.do")  # Replace with your real URL
+    context.driver.get("http://localhost:8180/pc/PolicyCenter.do")
 
 @when("user enters valid username and password")
 def Creds(context):

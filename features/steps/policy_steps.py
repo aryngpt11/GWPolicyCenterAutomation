@@ -12,7 +12,7 @@ def newPolicySubmission(context):
 @when("user enters the stored Account Number")
 def accNum(context):
     account_no = context.config.userdata.get('account_number')
-    print("🧾 Using stored account number:", account_no)
+    print("Using stored account number:", account_no)
     PolicyPage(context).enter_account_number(account_no)
 
 @when('user clicks on the "Account Search" button')

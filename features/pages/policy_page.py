@@ -102,12 +102,12 @@ class PolicyPage:
         self.wait.until(EC.element_to_be_clickable((By.NAME,"SubmissionWizard-LOBWizardStepGroup-LineWizardStepSet-PAVehiclesScreen-PAVehiclesPanelSet-VehiclesListDetailPanel-VehiclesDetailsCV-PersonalAuto_VehicleDV-PersonalAuto_AssignDriversInputSet-DriverPctLV-0-_Checkbox"))).click()
         self.driver.find_element(By.CSS_SELECTOR,"div[id='SubmissionWizard-LOBWizardStepGroup-LineWizardStepSet-PAVehiclesScreen-PAVehiclesPanelSet-VehiclesListDetailPanel-VehiclesLV-0-_Checkbox'] input[type='checkbox']").click()
         self.driver.find_element(By.CSS_SELECTOR, "div[id='SubmissionWizard-Next'] div[class='gw-action--inner gw-hasDivider']").click()
-        time.sleep(5)
+
 
 
     def click_quote(self):
         self.driver.find_element(By.CSS_SELECTOR,"div[id='SubmissionWizard-LOBWizardStepGroup-LineWizardStepSet-PersonalAutoScreen-JobWizardToolbarButtonSet-QuoteTypeToolbarButtonSet-Quote'] div[class='gw-action--inner gw-hasDivider']").click()
-        time.sleep(5)
+
 
     def select_issue_policy(self):
         self.driver.find_element(By.CSS_SELECTOR,"div[id='SubmissionWizard-SubmissionWizard_QuoteScreen-JobWizardToolbarButtonSet-BindOptions'] div[class='gw-action--inner']").click()
@@ -115,7 +115,9 @@ class PolicyPage:
 
     def accept_alert(self):
         self.driver.switch_to.alert.accept()
-        time.sleep(10)
+
 
     def is_submission_bound(self):
-        return "Submission Bound" in self.driver.page_source
+        self.driver.switch_to.default_content()
+        element = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,"div[id='JobComplete-JobCompleteScreen-ttlBar'] div[class='gw-TitleBar--title']")))
+        return "Submission Bound" in element.text

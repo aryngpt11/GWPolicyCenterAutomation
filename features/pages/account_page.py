@@ -3,6 +3,7 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
+from selenium.webdriver import ActionChains
 
 
 class AccountPage:
@@ -22,10 +23,14 @@ class AccountPage:
 
     def click_search(self):
         self.driver.find_element(By.ID, "NewAccount-NewAccountScreen-NewAccountSearchDV-SearchAndResetInputSet-SearchLinksInputSet-Search").click()
+        time.sleep(2)
 
     def click_create_new_account(self):
-        self.driver.find_element(By.CSS_SELECTOR, "div[id='NewAccount-NewAccountScreen-NewAccountButton'] div[role='button']").click()
-        time.sleep(5)
+        #self.driver.find_element(By.ID, "NewAccount-NewAccountScreen-NewAccountButton").click()
+        element = self.wait.until(EC.element_to_be_clickable((By.ID, "NewAccount-NewAccountScreen-NewAccountButton")))
+        actions = ActionChains(self.driver)
+        actions.move_to_element(element).click().perform()
+
 
     def select_person_option(self):
 
